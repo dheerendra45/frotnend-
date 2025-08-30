@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { Layout } from './components/Layout';
 import { AnimatedBackground } from './components/AnimatedBackground';
@@ -25,6 +25,10 @@ function App() {
             <Route path="/briefings/:id" element={<BriefingDetails />} />
             <Route path="/briefings/:id/pressguard" element={<PressGuardDashboard />} />
             <Route path="/briefings/:id/slices" element={<Slices />} />
+            {/* Alias route to support /slices/:id direct access */}
+            <Route path="/slices/:id" element={<Slices />} />
+            {/* Redirect bare /slices to the briefings list */}
+            <Route path="/slices" element={<Navigate to="/briefings" replace />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/about" element={<About />} />
           </Routes>
