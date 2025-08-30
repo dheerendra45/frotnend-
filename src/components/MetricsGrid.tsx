@@ -1,5 +1,5 @@
 import React from 'react';
-import { TrendingUp, TrendingDown, Activity, DollarSign, BarChart3, Zap } from 'lucide-react';
+import { TrendingUp, TrendingDown, Activity, BarChart3, Zap } from 'lucide-react';
 
 interface MetricCardProps {
   title: string;
@@ -48,9 +48,6 @@ interface MetricsGridProps {
 
 export function MetricsGrid({ briefings }: MetricsGridProps) {
   const totalBriefings = briefings.length;
-  const avgScore = briefings.length > 0 
-    ? briefings.reduce((sum, b) => sum + (b.scores?.composite || 0), 0) / briefings.length 
-    : 0;
   
   const highRiskCount = briefings.filter(b => 
     (b.scores?.composite || 0) < 0.5
@@ -70,14 +67,6 @@ export function MetricsGrid({ briefings }: MetricsGridProps) {
       color: 'from-blue-500 to-blue-600'
     },
     {
-      title: 'Average Score',
-      value: `${(avgScore * 100).toFixed(1)}%`,
-      change: avgScore > 0.7 ? 8.2 : -3.1,
-      trend: avgScore > 0.7 ? 'up' as const : 'down' as const,
-      icon: <TrendingUp className="w-6 h-6 text-white" />,
-      color: 'from-green-500 to-green-600'
-    },
-    {
       title: 'High Risk Items',
       value: highRiskCount,
       change: -15.3,
@@ -92,14 +81,6 @@ export function MetricsGrid({ briefings }: MetricsGridProps) {
       trend: 'up' as const,
       icon: <Activity className="w-6 h-6 text-white" />,
       color: 'from-purple-500 to-purple-600'
-    },
-    {
-      title: 'Market Sentiment',
-      value: avgScore > 0.6 ? 'Bullish' : 'Bearish',
-      change: avgScore > 0.6 ? 22.1 : -8.9,
-      trend: avgScore > 0.6 ? 'up' as const : 'down' as const,
-      icon: <DollarSign className="w-6 h-6 text-white" />,
-      color: 'from-yellow-500 to-yellow-600'
     },
     {
       title: 'Volatility Index',

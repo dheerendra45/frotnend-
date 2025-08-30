@@ -1,15 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Upload, FileText, Activity, Zap } from 'lucide-react';
+import { Upload, FileText, Activity } from 'lucide-react';
 import { listBriefings } from '../api/client';
 import { BriefingListItem } from '../types/api';
 import { GlowingButton } from '../components/GlowingButton';
 import { EmptyState } from '../components/EmptyState';
 import { ErrorState } from '../components/ErrorState';
 import { ScoreBadge } from '../components/ScoreBadge';
-import { ScoreRadarChart } from '../components/ScoreRadarChart';
 import { MetricsGrid } from '../components/MetricsGrid';
-import { MarketReaction } from '../components/MarketReaction';
 import { Skeleton } from '../components/Skeleton';
 import { format } from 'date-fns';
 
@@ -63,14 +61,10 @@ export function Dashboard() {
       <MetricsGrid briefings={briefings} />
 
       
-      {/* Speech-driven Market Reaction (video-based, no live market feeds) */}
-      <div className="grid grid-cols-1 gap-8">
-        <MarketReaction recentBriefings={briefings} />
-      </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 gap-8">
         {/* Recent Briefings */}
-        <div className="xl:col-span-2 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-xl border border-gray-700 shadow-2xl">
+        <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-xl border border-gray-700 shadow-2xl">
           <div className="p-6 border-b border-gray-700">
             <div className="flex items-center justify-between">
               <h2 className="text-2xl font-bold text-white font-display flex items-center">
@@ -154,45 +148,6 @@ export function Dashboard() {
                     </div>
                   </Link>
                 ))}
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Score Visualization */}
-        <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-xl border border-gray-700 shadow-2xl">
-          <div className="p-6 border-b border-gray-700">
-            <h2 className="text-2xl font-bold text-white font-display flex items-center">
-              <Zap className="mr-3 h-6 w-6 text-yellow-400" />
-              Average Scores
-            </h2>
-          </div>
-          
-          <div className="p-6">
-            {isLoading ? (
-              <div className="h-64 flex items-center justify-center">
-                <div className="animate-pulse">
-                  <div className="w-48 h-48 bg-gray-200 dark:bg-gray-700 rounded-full" />
-                </div>
-              </div>
-            ) : briefings.length === 0 ? (
-              <div className="h-64 flex items-center justify-center">
-                <div className="text-center">
-                  <Activity className="mx-auto h-12 w-12 text-gray-400" />
-                  <p className="mt-2 text-sm text-gray-400">
-                    No data to display
-                  </p>
-                </div>
-              </div>
-            ) : (
-              <div className="h-64">
-                <ScoreRadarChart
-                  scores={{
-                    content: briefings.reduce((sum, b) => sum + (b.scores.content || 0), 0) / briefings.length,
-                    delivery: briefings.reduce((sum, b) => sum + (b.scores.delivery || 0), 0) / briefings.length,
-                    impact: briefings.reduce((sum, b) => sum + (b.scores.impact || 0), 0) / briefings.length,
-                  }}
-                />
               </div>
             )}
           </div>
