@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AttackedAI - Advanced Briefing Intelligence Platform</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Meta tags for better SEO -->
+    <meta name="description" content="Advanced AI-powered briefing analysis with real-time market intelligence and comprehensive risk assessment.">
+    <meta name="keywords" content="AI, briefing analysis, market intelligence, risk assessment, real-time data">
+    <meta name="author" content="AttackedAI">
+    
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="AttackedAI - Advanced Briefing Intelligence">
+    <meta property="og:description" content="Revolutionary AI platform for briefing analysis and market intelligence">
+    <meta property="og:type" content="website">
+    
+    <!-- Custom CSS for animations -->
+    <style>
+      @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      
+      .animate-gradient {
+        background: linear-gradient(-45deg, #1e3a8a, #3b82f6, #8b5cf6, #ec4899);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+      }
+      
+      .glass-effect {
+        backdrop-filter: blur(16px) saturate(180%);
+        -webkit-backdrop-filter: blur(16px) saturate(180%);
+        background-color: rgba(17, 25, 40, 0.75);
+        border: 1px solid rgba(255, 255, 255, 0.125);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
